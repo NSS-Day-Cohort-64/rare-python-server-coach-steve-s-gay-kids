@@ -85,6 +85,45 @@ CREATE TABLE "Categories" (
   "label" varchar
 );
 
-INSERT INTO Categories ('label') VALUES ('News');
+/* INSERT INTO Categories ('label') VALUES ('News');
 INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
+ */
+
+INSERT INTO Users (id, first_name, last_name, email, bio, username, password, profile_image_url, created_on, active)
+VALUES (1, 'Briana', 'Phillips', 'BrianaPhillips@gmail.com', 'Bio: XYZ', 'BrianaPhillips', 'BrianaPhillips1', 'BrianaPhillips_profile_image_url', '2023-08-07', '1');
+
+INSERT INTO Users (id, first_name, last_name, email, bio, username, password, profile_image_url, created_on, active)
+VALUES (2, 'Elena', 'Spraldin', 'ElenaSpraldin@gmail.com', 'Bio: XYZ', 'ElenaSpraldin', 'ElenaSpraldin1', 'ElenaSpraldin_profile_image_url', '2023-08-07', '1');
+
+INSERT INTO Users (id, first_name, last_name, email, bio, username, password, profile_image_url, created_on, active)
+VALUES (3, 'Miguel', 'Morales', 'MiguelMorales@gmail.com', 'Bio: XYZ', 'MiguelMorales', 'MiguelMorales1', 'MiguelMorales_profile_image_url', '2023-08-07', '1');
+
+INSERT INTO Users (id, first_name, last_name, email, bio, username, password, profile_image_url, created_on, active)
+VALUES (4, 'Jack', 'Hill', 'JackHill@gmail.com', 'Bio: XYZ', 'JackHill', 'JackHill1', 'JackHill_profile_image_url', '2023-08-07', '1');
+
+INSERT INTO Users (id, first_name, last_name, email, bio, username, password, profile_image_url, created_on, active)
+VALUES (5, 'Jill', 'Hill', 'JillHill@gmail.com', 'Bio: XYZ', 'JillHill', 'JillHill1', 'JillHill_profile_image_url', '2023-08-07', '1');
+
+
+
+
+INSERT INTO DemotionQueue (action, admin_id, approver_one_id)
+VALUES ('action1', 1, 2);
+
+INSERT INTO DemotionQueue (action, admin_id, approver_one_id)
+VALUES ('action2', 3, 4);
+
+INSERT INTO DemotionQueue (action, admin_id, approver_one_id)
+VALUES ('action3', 5, 6);
+
+
+
+INSERT INTO Subscriptions (id, follower_id, author_id, created_on)
+VALUES (1, 1, 2, '2023-08-07');
+
+INSERT INTO Subscriptions (id, follower_id, author_id, created_on)
+VALUES (2, 3, 4, '2023-08-07');
+
+INSERT INTO Subscriptions (id, follower_id, author_id, created_on)
+VALUES (3, 5, 6, '2023-08-07');
