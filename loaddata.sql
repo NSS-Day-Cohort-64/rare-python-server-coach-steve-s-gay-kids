@@ -42,6 +42,13 @@ CREATE TABLE "Posts" (
   FOREIGN KEY(`user_id`) REFERENCES `Users`(`id`),
 );
 
+INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (1, 1, 'Post 1', '2022-01-01', 'image_url_1.jpg', 'Nature', 1);
+INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (2, 2, 'Post 2', '2022-02-02', 'image_url_2.jpg', 'History', 0);
+INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (3, 3, 'Post 3', '2022-04-03', 'image_url_3.jpg', 'Geography', 1);
+INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (4, 2, 'Post 1', '2022-06-01', 'image_url_4.jpg', 'Social Sciences', 1);
+INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (5, 3, 'Post 2', '2022-10-02', 'image_url_5.jpg', 'Nature', 0);
+INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (6, 1, 'Post 3', '2022-07-03', 'image_url_6.jpg', 'History', 1);
+
 CREATE TABLE "Comments" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "post_id" INTEGER,
@@ -51,11 +58,25 @@ CREATE TABLE "Comments" (
   FOREIGN KEY(`author_id`) REFERENCES `Users`(`id`)
 );
 
+INSERT INTO Comments (post_id, author_id, content) VALUES (1, 2, 'Great article!');
+INSERT INTO Comments (post_id, author_id, content) VALUES (1, 3, 'I have a different perspective on this topic.');
+INSERT INTO Comments (post_id, author_id, content) VALUES (2, 1, 'Thanks for sharing this valuable information.');
+INSERT INTO Comments (post_id, author_id, content) VALUES (3, 2, 'I completely agree with your analysis.');
+INSERT INTO Comments (post_id, author_id, content) VALUES (4, 3, 'Interesting read!');
+INSERT INTO Comments (post_id, author_id, content) VALUES (6, 1, 'I would like to hear more about this subject.');
+
 CREATE TABLE "Reactions" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "label" varchar,
   "image_url" varchar
 );
+
+INSERT INTO Reactions (label, image_url) VALUES ('Like', 'like.png');
+INSERT INTO Reactions (label, image_url) VALUES ('Love', 'love.png');
+INSERT INTO Reactions (label, image_url) VALUES ('Haha', 'haha.png');
+INSERT INTO Reactions (label, image_url) VALUES ('Wow', 'wow.png');
+INSERT INTO Reactions (label, image_url) VALUES ('Sad', 'sad.png');
+INSERT INTO Reactions (label, image_url) VALUES ('Angry', 'angry.png');
 
 CREATE TABLE "PostReactions" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
