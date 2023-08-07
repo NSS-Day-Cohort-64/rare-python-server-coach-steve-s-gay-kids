@@ -20,7 +20,7 @@ CREATE TABLE "DemotionQueue" (
   PRIMARY KEY (action, admin_id, approver_one_id)
 );
 
-
+-
 CREATE TABLE "Subscriptions" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "follower_id" INTEGER,
@@ -106,6 +106,22 @@ CREATE TABLE "Categories" (
   "label" varchar
 );
 
+INSERT INTO Categories ('label') VALUES ('News');
+INSERT INTO Categories ('label') VALUES ('Drama');
+INSERT INTO Categories ('label') VALUES ('Gay');
+
+INSERT INTO PostReactions ('user_id', 'reaction_id', 'post_id') VALUES ('1', '2', '2');
+INSERT INTO PostReactions ('user_id', 'reaction_id', 'post_id') VALUES ('3', '2', '1');
+INSERT INTO PostReactions ('user_id', 'reaction_id', 'post_id') VALUES ('2', '1', '3');
+
+INSERT INTO Tags ('label') VALUES ('JavaScript');
+INSERT INTO Tags ('label') VALUES ('React');
+INSERT INTO Tags ('label') VALUES ('Python');
+
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES ('2', '1');
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES ('1', '2');
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES ('3', '2');
+=======
 /* INSERT INTO Categories ('label') VALUES ('News');
 INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
@@ -127,8 +143,6 @@ INSERT INTO Users (id, first_name, last_name, email, bio, username, password, pr
 VALUES (5, 'Jill', 'Hill', 'JillHill@gmail.com', 'Bio: XYZ', 'JillHill', 'JillHill1', 'JillHill_profile_image_url', '2023-08-07', '1');
 
 
-
-
 INSERT INTO DemotionQueue (action, admin_id, approver_one_id)
 VALUES ('action1', 1, 2);
 
@@ -148,3 +162,4 @@ VALUES (2, 3, 4, '2023-08-07');
 
 INSERT INTO Subscriptions (id, follower_id, author_id, created_on)
 VALUES (3, 5, 6, '2023-08-07');
+
