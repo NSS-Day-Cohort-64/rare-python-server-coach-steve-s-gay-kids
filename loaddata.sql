@@ -43,7 +43,6 @@ CREATE TABLE "Posts" (
 );
 
 
-
 CREATE TABLE "Comments" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "post_id" INTEGER,
@@ -122,7 +121,6 @@ VALUES (2, 3, 4, '2023-08-07');
 INSERT INTO Subscriptions (id, follower_id, author_id, created_on)
 VALUES (3, 5, 6, '2023-08-07');
 
-
 INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (1, 1, 'Post 1', '2022-01-01', 'image_url_1.jpg', 'Nature', 1);
 INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (2, 2, 'Post 2', '2022-02-02', 'image_url_2.jpg', 'History', 0);
 INSERT INTO Posts (user_id, category_id, title, publication_date, image_url, content, approved) VALUES (3, 3, 'Post 3', '2022-04-03', 'image_url_3.jpg', 'Geography', 1);
@@ -159,7 +157,6 @@ INSERT INTO PostTags ('post_id', 'tag_id') VALUES ('3', '2');
 INSERT INTO Categories ('label') VALUES ('News');
 INSERT INTO Categories ('label') VALUES ('Drama');
 INSERT INTO Categories ('label') VALUES ('Gay');
-
 
 
 SELECT * FROM POSTS
