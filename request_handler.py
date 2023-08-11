@@ -62,6 +62,19 @@ class HandleRequests(BaseHTTPRequestHandler):
             else:
                 response = get_all_posts()
 
+        if resource == "users":
+            if id is not None:
+                # Assuming the user is authenticated, retrieve user data by ID
+                # This may involve querying the database for user information
+                # You need to implement this function
+                user_data = login_user(id)
+            if user_data is not None:
+                response = user_data
+            else:
+                response = {'error': 'User not found'}
+
+        # Convert the response to a JSON string and send it as the response body
+
         self.wfile.write(json.dumps(response).encode())
 
     def do_POST(self):
