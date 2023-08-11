@@ -1,6 +1,8 @@
 import sqlite3
 import json
 from datetime import datetime
+from models import User
+
 
 def login_user(user):
     """Checks for the user in the database
@@ -17,7 +19,7 @@ def login_user(user):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-            select id, username
+            select id, username, password
             from Users
             where username = ?
             and password = ?
@@ -52,7 +54,7 @@ def create_user(user):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        Insert into Users (first_name, last_name, username, email, password, bio, created_on, active) values (?, ?, ?, ?, ?, ?, ?, 1)
+        Insert into Users (first_name, last_name, username, email, password, bio, profile_image_url, created_on, active) values (?, ?, ?, ?, ?, ?, ?, ?, 1)
         """, (
             user['first_name'],
             user['last_name'],
@@ -60,6 +62,7 @@ def create_user(user):
             user['email'],
             user['password'],
             user['bio'],
+            user['profile_image_url'],
             datetime.now()
         ))
 

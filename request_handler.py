@@ -51,8 +51,26 @@ class HandleRequests(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Handle Get requests to the server"""
-        pass
+        self._set_headers(200)
 
+        response = {}  # Default response
+
+        # Parse the URL and capture the tuple that is returned
+        (resource, id) = self.parse_url()
+
+        if resource == "users":
+            if id is not None:
+                # Assuming the user is authenticated, retrieve user data by ID
+                # This may involve querying the database for user information
+                # You need to implement this function
+                user_data = login_user(id)
+                if user_data is not None:
+                    response = user_data
+                else:
+                    response = {'error': 'User not found'}
+
+        # Convert the response to a JSON string and send it as the response body
+        self.wfile.write(json.dumps(response).encode())
 
     def do_POST(self):
         """Make a post request to the server"""
