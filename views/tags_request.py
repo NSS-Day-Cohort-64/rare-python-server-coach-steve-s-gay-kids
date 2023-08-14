@@ -32,7 +32,7 @@ def get_single_tag(id):
         db_cursor.execute("""
             SELECT
                 t.id,
-                t.label,
+                t.label
             FROM Tags t
             WHERE t.id = ?
         """, (id, ))
@@ -70,14 +70,17 @@ def update_tag(id, new_tag):
         UPDATE Tags
         SET label = ?
         WHERE id = ?
-        """, (new_tag['label'], id,))
+        """, (new_tag['label'], id, ))
 
         row_affected = db_cursor.rowcount
-
-    if row_affected == 0:
-        return False
-    else:
-        return True
+        
+        if row_affected == 0:
+            # Log more information if update fails
+            print(f"Update failed for id: {id}, label: {new_tag['label']}")
+            return False
+        else:
+            print(f"Update succeeded for id: {id}, label: {new_tag['label']}")
+            return True
 
 
 def delete_tag(id):

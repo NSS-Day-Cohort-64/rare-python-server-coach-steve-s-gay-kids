@@ -1,5 +1,4 @@
 import json
-
 from views import create_user, login_user, get_all_tags, get_single_tag, create_tag, delete_tag, update_tag, get_all_posts, get_single_post
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
@@ -90,7 +89,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         post_body = json.loads(self.rfile.read(content_len).decode())
 
         # Access the 'resource' from the 'parse_url' method
-        resource = self.parse_url()[0]
+        resource = self.parse_url(self.path)[0]
         response = ""
 
         if resource == 'login':
@@ -109,7 +108,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         post_body = json.loads(post_body)
 
         # Assign the result of 'self.parse_url()' to 'resource' and 'id'
-        resource, id = self.parse_url()
+        resource, id = self.parse_url(self.path)
 
         success = False
         error = ""
@@ -124,7 +123,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(error).encode())
 
     def do_DELETE(self):
-        resource, id = self.parse_url()
+        resource, id = self.parse_url(self.path)
 
         success = False
 
