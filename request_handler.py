@@ -3,15 +3,16 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 from views.user import create_user, login_user
 from views.tags_request import get_all_tags, get_single_tag, create_tag, delete_tag, update_tag
+from views.posts_requests import get_all_posts, get_single_post
 
 
 class HandleRequests(BaseHTTPRequestHandler):
     """Handles the requests to this server"""
 
-    def parse_url(self):
-        """Parse the URL into the resource and id"""
-        path_params = self.path.split('/')
+    def parse_url(self, path):
+        path_params = path.split('/')
         resource = path_params[1]
+        id = None
         if '?' in resource:
             resource = resource.split('?')[0]
             param = resource.split('?')[1]
@@ -20,12 +21,11 @@ class HandleRequests(BaseHTTPRequestHandler):
             value = pair[1]
             return (resource, key, value)
         else:
-            id = None
             try:
                 id = int(path_params[2])
             except (IndexError, ValueError):
                 pass
-            return (resource, id)
+        return (resource, id)
 
     def _set_headers(self, status):
         """Sets the status code, Content-Type and Access-Control-Allow-Origin
@@ -48,13 +48,11 @@ class HandleRequests(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        success = False
-        response = ""
-        parsed = self.parse_url()
 
-        resource = parsed[0]  # Access the 'resource' from the 'parsed' variable
-        id = parsed[1]  # Access the 'id' from the 'parsed' variable
+        self._set_headers(200)
+        response = {}
 
+        (resource, id) = self.parse_url(self.path)
         if resource == "tags":
             if id is not None:
                 response = get_single_tag(id)
@@ -66,6 +64,27 @@ class HandleRequests(BaseHTTPRequestHandler):
             self._set_headers(200)
         else:
             self._set_headers(404)
+            
+        if resource == "posts":
+            if id is not None:
+                response = get_single_post(id)
+
+            else:
+                response = get_all_posts()
+
+        if resource == "users":
+            if id is not None:
+                # Assuming the user is authenticated, retrieve user data by ID
+                # This may involve querying the database for user information
+                # You need to implement this function
+                user_data = login_user(id)
+            if user_data is not None:
+                response = user_data
+            else:
+                response = {'error': 'User not found'}
+
+        # Convert the response to a JSON string and send it as the response body
+
         self.wfile.write(json.dumps(response).encode())
 
     def do_POST(self):
