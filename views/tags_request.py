@@ -66,14 +66,17 @@ def update_tag(id, new_tag):
         UPDATE Tags
         SET label = ?
         WHERE id = ?
-        """, (new_tag['label'], id,))
+        """, (new_tag['label'], id, ))
 
         row_affected = db_cursor.rowcount
 
-    if row_affected == 0:
-        return False
-    else:
-        return True  
+        if row_affected == 0:
+            # Log more information if update fails
+            print(f"Update failed for id: {id}, label: {new_tag['label']}")
+            return False
+        else:
+            print(f"Update succeeded for id: {id}, label: {new_tag['label']}")
+            return True
 
 def delete_tag(id):
     with sqlite3.connect("./db.sqlite3") as conn:
