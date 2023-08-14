@@ -1,6 +1,7 @@
 import sqlite3
 from models import Tags
 
+
 def get_all_tags():
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -22,6 +23,7 @@ def get_all_tags():
 
     return tags
 
+
 def get_single_tag(id):
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -31,17 +33,17 @@ def get_single_tag(id):
             SELECT
                 t.id,
                 t.label,
-
             FROM Tags t
             WHERE t.id = ?
-        """, (id,))
+        """, (id, ))
 
         data = db_cursor.fetchone()
 
         # Create an tag instance from the current row
         tag = Tags(data['id'], data['label'])
         return tag.__dict__
-    
+
+
 def create_tag(new_tag):
     with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
@@ -59,6 +61,7 @@ def create_tag(new_tag):
 
     return new_tag
 
+
 def update_tag(id, new_tag):
     with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
@@ -74,7 +77,8 @@ def update_tag(id, new_tag):
     if row_affected == 0:
         return False
     else:
-        return True  
+        return True
+
 
 def delete_tag(id):
     with sqlite3.connect("./db.sqlite3") as conn:

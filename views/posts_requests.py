@@ -36,6 +36,7 @@ def get_all_posts():
                 ON u.id = p.user_id
             JOIN Categories c
                 ON c.id = p.category_id
+            ORDER BY p.publication_date DESC
             """)
 
         # Initialize an empty list to hold all order representations
@@ -98,6 +99,7 @@ def get_single_post(id):
                 ON u.id = p.user_id
             JOIN Categories c
                 ON c.id = p.category_id
+            ORDER BY p.publication_date DESC
             WHERE id = ?
             """, (id, ))
 
