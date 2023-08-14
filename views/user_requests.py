@@ -1,7 +1,7 @@
 import sqlite3
 import json
 from datetime import datetime
-from models import User
+from models import Users
 
 
 def login_user(user):
