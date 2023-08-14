@@ -30,8 +30,7 @@ def get_single_tag(id):
         db_cursor.execute("""
             SELECT
                 t.id,
-                t.label,
-
+                t.label
             FROM Tags t
             WHERE t.id = ?
         """, (id,))
