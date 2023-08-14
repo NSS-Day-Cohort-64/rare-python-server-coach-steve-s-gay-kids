@@ -147,3 +147,21 @@ INSERT INTO PostTags ('post_id', 'tag_id') VALUES ('3', '2');
 INSERT INTO Categories ('label') VALUES ('News');
 INSERT INTO Categories ('label') VALUES ('Drama');
 INSERT INTO Categories ('label') VALUES ('Gay');
+
+            SELECT
+                p.id,
+                p.user_id,
+                p.category_id,
+                p.title,
+                p.publication_date,
+                p.image_url,
+                p.content,
+                p.approved,
+                u.first_name firstname,
+                u.last_name lastname,
+                c.label category             
+            FROM `Posts` p
+            JOIN Users u 
+                ON u.id = p.user_id
+            JOIN Categories c
+                ON c.id = p.category_id
