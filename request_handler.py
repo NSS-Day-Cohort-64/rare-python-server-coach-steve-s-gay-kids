@@ -1,10 +1,8 @@
 import json
 
-from views import create_user, login_user
+from views import create_user, login_user, get_all_tags, get_single_tag, create_tag, delete_tag, update_tag, get_all_posts, get_single_post
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
-from views.tags_request import get_all_tags, get_single_tag, create_tag, delete_tag, update_tag
-from views.posts_requests import get_all_posts, get_single_post
 
 
 class HandleRequests(BaseHTTPRequestHandler):
